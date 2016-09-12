@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "mParticle-Apptimize"
-    s.version          = "6.4.0"
+    s.version          = "6.8.0"
     s.summary          = "Apptimize integration for mParticle"
 
     s.description      = <<-DESC
@@ -12,9 +12,22 @@ Pod::Spec.new do |s|
     s.author           = { "mParticle" => "support@mparticle.com" }
     s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-apptimize.git", :tag => s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticles"
+    s.default_subspec  = "DefaultVersion"
 
-    s.ios.deployment_target = "7.0"
-    s.ios.source_files      = 'mParticle-Apptimize/*.{h,m,mm}'
-    s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.4'
-    s.ios.dependency 'Apptimize', '2.16'
+    def s.subspec_common(ss)
+        ss.ios.deployment_target = "7.0"
+        ss.ios.source_files      = 'mParticle-Apptimize/*.{h,m,mm}'
+        ss.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
+    end
+
+    s.subspec 'DefaultVersion' do |ss|
+        ss.ios.dependency 'Apptimize', '2.16'
+        s.subspec_common(ss)
+    end
+
+    s.subspec 'UserDefinedVersion' do |ss|
+        ss.ios.dependency 'Apptimize'
+        s.subspec_common(ss)
+    end
+
 end
