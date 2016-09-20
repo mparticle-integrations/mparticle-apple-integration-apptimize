@@ -19,7 +19,7 @@
 #import "MPKitApptimize.h"
 #import "mParticle.h"
 
-#import "Apptimize/Apptimize.h"
+#import "Apptimize.h"
 
 @interface MPKitApptimize()
 @property (nonatomic, unsafe_unretained) BOOL started;
@@ -61,13 +61,13 @@ static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
     if (!self || !appKey) {
         return nil;
     }
-    
+
     _configuration = configuration;
-    
+
     if (startImmediately) {
         [self start];
     }
-    
+
     return self;
 }
 
@@ -150,7 +150,12 @@ static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
              [Apptimize setPilotTargetingID:identityString];
              break;
          }
+
+         default:
+            return [self makeStatus:MPKitReturnCodeUnavailable];
+            break;
      }
+
      return [self makeStatus:MPKitReturnCodeSuccess];
  }
 
