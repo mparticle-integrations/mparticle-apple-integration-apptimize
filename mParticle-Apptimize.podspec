@@ -15,13 +15,13 @@ Pod::Spec.new do |s|
     s.default_subspec  = "DefaultVersion"
 
     def s.subspec_common(ss)
-        ss.ios.deployment_target = "7.0"
+        ss.ios.deployment_target = "8.0"
         ss.ios.source_files      = 'mParticle-Apptimize/*.{h,m,mm}'
         ss.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
     end
 
     s.subspec 'DefaultVersion' do |ss|
-        ss.ios.dependency 'Apptimize', '2.16'
+        ss.ios.dependency 'Apptimize', '2.18'
         s.subspec_common(ss)
     end
 
