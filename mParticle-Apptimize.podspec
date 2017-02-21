@@ -21,12 +21,12 @@ Pod::Spec.new do |s|
     end
 
     s.subspec 'DefaultVersion' do |ss|
-        ss.ios.dependency 'Apptimize-Private', '2.18'
+        ss.ios.dependency 'Apptimize', '2.18'
         s.subspec_common(ss)
     end
 
     s.subspec 'UserDefinedVersion' do |ss|
-        ss.ios.dependency 'Apptimize-Private'
+        ss.ios.dependency 'Apptimize'
         s.subspec_common(ss)
     end
 
