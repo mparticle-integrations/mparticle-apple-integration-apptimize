@@ -18,8 +18,7 @@
 
 #import "MPKitApptimize.h"
 #import "mParticle.h"
-
-#import "Apptimize.h"
+#import <Apptimize/Apptimize.h>
 
 @interface MPKitApptimize()
 @property (nonatomic, unsafe_unretained) BOOL started;
