@@ -35,6 +35,7 @@ static NSString *const LOGOUT_TAG = @"logout";
 static NSString *const UPDATE_TAG = @"update";
 static NSString *const LTV_TAG = @"ltv";
 static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
+static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
 
 + (NSNumber *)kitCode {
     return @105;
@@ -96,6 +97,7 @@ static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
     [self configureApptimizeDevicePairing:o];
     [self configureApptimizeDelayUntilTestsAreAvailable:o];
     [self configureApptimizeLogLevel:o];
+    [self configureExperimentTracking];
     return o;
 }
 
@@ -128,6 +130,40 @@ static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
         value = [self.configuration objectForKey:key];
     }
     return value;
+}
+
+- (void) configureExperimentTracking {
+    BOOL enable = [self configValueForKey:TRACK_EXPERIMENTS];
+    if (enable) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(experimentDidGetViewed:)
+                                                     name:ApptimizeTestRunNotification
+                                                   object:nil];
+    }
+}
+
+- (void) experimentDidGetViewed:(NSNotification*)notification {
+    if (![notification.userInfo[ApptimizeTestFirstRunUserInfoKey] boolValue]) {
+        return;
+    }
+
+    // Apptimize doesn't notify with IDs, so we iterate over all experiments to find the matching one.
+    NSString *name = notification.userInfo[ApptimizeTestNameUserInfoKey];
+    NSString *variant = notification.userInfo[ApptimizeVariantNameUserInfoKey];
+    [[Apptimize testInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id<ApptimizeTestInfo> experiment, BOOL *stop) {
+        BOOL match = [experiment.testName isEqualToString:name] && [experiment.enrolledVariantName isEqualToString:variant];
+        if (!match) {
+            return;
+        }
+        MPEvent *event = [[MPEvent alloc]initWithName:@"Experiment Viewed"
+                                                 type:MPEventTypeOther];
+        event.info = @{@"experimentId" : [experiment testID],
+                       @"experimentName" : [experiment testName],
+                       @"variationId" : [experiment enrolledVariantID],
+                       @"variationName" : [experiment enrolledVariantName]};
+        [[MParticle sharedInstance] logEvent:event];
+        *stop = YES;
+    }];
 }
 
 #pragma mark User attributes and identities
