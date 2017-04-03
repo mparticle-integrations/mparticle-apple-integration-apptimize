@@ -35,6 +35,7 @@ static NSString *const LOGOUT_TAG = @"logout";
 static NSString *const UPDATE_TAG = @"update";
 static NSString *const LTV_TAG = @"ltv";
 static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
+static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
 
 + (NSNumber *)kitCode {
     return @105;
@@ -93,9 +94,11 @@ static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
 - (nonnull NSDictionary*)buildApptimizeOptions {
     NSMutableDictionary *o = [NSMutableDictionary new];
     [o setObject:[NSNumber numberWithBool:FALSE] forKey:ApptimizeEnableThirdPartyEventImportingOption];
+    [o setObject:[NSNumber numberWithBool:FALSE] forKey:ApptimizeEnableThirdPartyEventExportingOption];
     [self configureApptimizeDevicePairing:o];
     [self configureApptimizeDelayUntilTestsAreAvailable:o];
     [self configureApptimizeLogLevel:o];
+    [self configureExperimentTracking];
     return o;
 }
 
@@ -128,6 +131,52 @@ static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
         value = [self.configuration objectForKey:key];
     }
     return value;
+}
+
+- (void) configureExperimentTracking {
+    BOOL enable = [self configValueForKey:TRACK_EXPERIMENTS];
+    if (enable) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(experimentDidGetViewed:)
+                                                     name:ApptimizeTestRunNotification
+                                                   object:nil];
+    }
+}
+
+- (void) experimentDidGetViewed:(NSNotification*)notification {
+    if (![notification.userInfo[ApptimizeTestFirstRunUserInfoKey] boolValue]) {
+        return;
+    }
+
+    NSMutableArray *profileAttributeStrings = [NSMutableArray new];
+
+    for (id<ApptimizeTestInfo> test in [[Apptimize testInfo] allValues]) {
+        if (test.userHasParticipated) {
+            // We only want experiments the user has actually participated in
+            [profileAttributeStrings addObject:[NSString stringWithFormat:@"%@-%@",test.testName,test.enrolledVariantName]];
+        }
+    }
+
+    [[MParticle sharedInstance] setUserAttribute:@"Apptimize experiment" values:profileAttributeStrings];
+
+    // Apptimize doesn't notify with IDs, so we iterate over all experiments to find the matching one.
+    NSString *name = notification.userInfo[ApptimizeTestNameUserInfoKey];
+    NSString *variant = notification.userInfo[ApptimizeVariantNameUserInfoKey];
+    [[Apptimize testInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id<ApptimizeTestInfo> experiment, BOOL *stop) {
+        BOOL match = [experiment.testName isEqualToString:name] && [experiment.enrolledVariantName isEqualToString:variant];
+        if (!match) {
+            return;
+        }
+        MPEvent *event = [[MPEvent alloc]initWithName:@"Apptimize experiment"
+                                                 type:MPEventTypeOther];
+        event.info = @{@"Name" : [experiment testName],
+                       @"Variation" : [experiment enrolledVariantName],
+                       @"Name and Variation" : [NSString stringWithFormat:@"%@-%@", [experiment testName], [experiment enrolledVariantName]],
+                       @"ID" : [experiment testID],
+                       @"VariationID" : [experiment enrolledVariantID]};
+        [[MParticle sharedInstance] logEvent:event];
+        *stop = YES;
+    }];
 }
 
 #pragma mark User attributes and identities
