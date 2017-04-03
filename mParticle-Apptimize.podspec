@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = "8.0"
     s.ios.source_files      = 'mParticle-Apptimize/*.{h,m,mm}'
     s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.12.3'
-    s.ios.dependency 'Apptimize', '2.18.0'
+    s.ios.dependency 'Apptimize', '2.18.2'
 end
