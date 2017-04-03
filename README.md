@@ -11,23 +11,6 @@ A kit takes care of initializing and forwarding information depending on what yo
 
 Please refer to installation instructions in the core mParticle Apple SDK [README](https://github.com/mParticle/mparticle-apple-sdk#get-the-sdk), or check out our [SDK Documentation](http://docs.mparticle.com/#sdk-documentation) site to learn more.
 
-
-## Static Library
-
-In order to use Apptimize you will need to comment out `use_frameworks!` in your `Podfile` (if you are using it) and include the `pos_install` script below:
-
-```ruby
-post_install do |pi|
-    pi.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            if target.name == "Apptimize"
-                config.build_settings["OTHER_LDFLAGS"]  = '$(inherited) "-ObjC"'
-            end
-        end
-    end
-end
-```
-
 ## Support
 
 Questions? Give us a shout at <support@mparticle.com>
