@@ -94,6 +94,7 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
 - (nonnull NSDictionary*)buildApptimizeOptions {
     NSMutableDictionary *o = [NSMutableDictionary new];
     [o setObject:[NSNumber numberWithBool:FALSE] forKey:ApptimizeEnableThirdPartyEventImportingOption];
+    [o setObject:[NSNumber numberWithBool:FALSE] forKey:ApptimizeEnableThirdPartyEventExportingOption];
     [self configureApptimizeDevicePairing:o];
     [self configureApptimizeDelayUntilTestsAreAvailable:o];
     [self configureApptimizeLogLevel:o];
