@@ -147,6 +147,17 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
         return;
     }
 
+    NSMutableArray *profileAttributeStrings = [NSMutableArray new];
+
+    for (id<ApptimizeTestInfo> test in [[Apptimize testInfo] allValues]) {
+        if (test.userHasParticipated) {
+            // We only want experiments the user has actually participated in
+            [profileAttributeStrings addObject:[NSString stringWithFormat:@"%@-%@",test.testName,test.enrolledVariantName]];
+        }
+    }
+
+    [[MParticle sharedInstance] setUserAttribute:@"Apptimize experiment" values:profileAttributeStrings];
+
     // Apptimize doesn't notify with IDs, so we iterate over all experiments to find the matching one.
     NSString *name = notification.userInfo[ApptimizeTestNameUserInfoKey];
     NSString *variant = notification.userInfo[ApptimizeVariantNameUserInfoKey];
@@ -155,12 +166,13 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
         if (!match) {
             return;
         }
-        MPEvent *event = [[MPEvent alloc]initWithName:@"Experiment Viewed"
+        MPEvent *event = [[MPEvent alloc]initWithName:@"Apptimize experiment"
                                                  type:MPEventTypeOther];
-        event.info = @{@"experimentId" : [experiment testID],
-                       @"experimentName" : [experiment testName],
-                       @"variationId" : [experiment enrolledVariantID],
-                       @"variationName" : [experiment enrolledVariantName]};
+        event.info = @{@"Name" : [experiment testName],
+                       @"Variation" : [experiment enrolledVariantName],
+                       @"Name and Variation" : [NSString stringWithFormat:@"%@-%@", [experiment testName], [experiment enrolledVariantName]],
+                       @"ID" : [experiment testID],
+                       @"VariationID" : [experiment enrolledVariantID]};
         [[MParticle sharedInstance] logEvent:event];
         *stop = YES;
     }];
