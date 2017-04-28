@@ -17,7 +17,6 @@
 //
 
 #import "MPKitApptimize.h"
-#import "mParticle.h"
 #import <Apptimize/Apptimize.h>
 
 @interface MPKitApptimize()
@@ -134,7 +133,7 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
 }
 
 - (void) configureExperimentTracking {
-    BOOL enable = [self configValueForKey:TRACK_EXPERIMENTS];
+    BOOL enable = [self configValueForKey:TRACK_EXPERIMENTS] != nil;
     if (enable) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(experimentDidGetViewed:)
