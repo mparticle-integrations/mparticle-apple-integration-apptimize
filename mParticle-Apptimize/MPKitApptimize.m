@@ -156,7 +156,7 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
         }
     }
 
-    [[MParticle sharedInstance] setUserAttribute:@"Apptimize experiment" values:profileAttributeStrings];
+    [[MParticle sharedInstance].identity.currentUser setUserAttributeList:@"Apptimize experiment" values:profileAttributeStrings];
 
     // Apptimize doesn't notify with IDs, so we iterate over all experiments to find the matching one.
     NSString *name = notification.userInfo[ApptimizeTestNameUserInfoKey];
