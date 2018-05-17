@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "mParticle-Apptimize"
-    s.version          = "7.3.5"
+    s.version          = "7.3.6"
     s.summary          = "Apptimize integration for mParticle"
 
     s.description      = <<-DESC
