@@ -25,6 +25,15 @@
 
 @interface MPKitApptimize : NSObject <MPKitProtocol>
 
+/**
+ * Sets the pilot targeting ID for the Pilot Targeting API.
+ * If unspecifed then the user's identity string will be used.
+ * This method should be called before starting MParticle or as soon as the ID is known.
+ * https://apptimize.com/docs/featureflags/installation.html
+ * https://apptimize.com/docs/additional-features/pilot-users.html
+ */
++ (void)setPilotTargetingID:(NSString*) pilotTargetingID;
+
 @property (nonatomic, strong, nonnull) NSDictionary *configuration;
 @property (nonatomic, strong, nullable) NSDictionary *launchOptions;
 @property (nonatomic, unsafe_unretained, readonly) BOOL started;

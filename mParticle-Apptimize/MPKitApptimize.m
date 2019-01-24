@@ -36,6 +36,8 @@ static NSString *const LTV_TAG = @"ltv";
 static NSString *const VIEWED_TAG_FORMAT = @"screenView %@";
 static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
 
+static NSString *_pilotTargetingID = nil;
+
 + (NSNumber *)kitCode {
     return @105;
 }
@@ -49,6 +51,22 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
     return [[MPKitExecStatus alloc]
             initWithSDKCode:@(MPKitInstanceApptimize)
             returnCode:code];
+}
+
+#pragma mark - MPKitApptimize methods
+
++ (void)setPilotTargetingID:(NSString*) pilotTargetingID {
+    void(^block)(void) = ^{
+        _pilotTargetingID = pilotTargetingID;
+        if ([[MParticle sharedInstance] isKitActive:[[self class] kitCode]]) {
+            [Apptimize setPilotTargetingID: pilotTargetingID];
+        }
+    };
+    if( [NSThread isMainThread] ) {
+        block();
+    } else {
+        dispatch_async( dispatch_get_main_queue(), block );
+    }
 }
 
 #pragma mark - MPKitInstanceProtocol methods
@@ -75,6 +93,9 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
     NSDictionary *options = [self buildApptimizeOptions];
     void(^start_block)(void) = ^{
         [Apptimize startApptimizeWithApplicationKey:self.configuration[APP_MP_KEY] options:options];
+        if (_pilotTargetingID) {
+            [Apptimize setPilotTargetingID: _pilotTargetingID];
+        }
         self.started = YES;
         NSDictionary *userInfo = @{mParticleKitInstanceKey:[[self class] kitCode]};
         [[NSNotificationCenter defaultCenter] postNotificationName:mParticleKitDidBecomeActiveNotification
@@ -195,7 +216,9 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
      switch( identityType ) {
          case MPUserIdentityCustomerId:
          case MPUserIdentityAlias: {
-             [Apptimize setPilotTargetingID:identityString];
+             if (!_pilotTargetingID) {
+                 [Apptimize setPilotTargetingID:identityString];
+             }
              break;
          }
 
