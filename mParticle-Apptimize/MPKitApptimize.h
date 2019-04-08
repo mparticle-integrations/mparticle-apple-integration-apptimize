@@ -32,7 +32,7 @@
  * https://apptimize.com/docs/featureflags/installation.html
  * https://apptimize.com/docs/additional-features/pilot-users.html
  */
-+ (void)setPilotTargetingID:(NSString*) pilotTargetingID;
++ (void)setPilotTargetingID:(nonnull NSString *)pilotTargetingID;
 
 @property (nonatomic, strong, nonnull) NSDictionary *configuration;
 @property (nonatomic, strong, nullable) NSDictionary *launchOptions;
