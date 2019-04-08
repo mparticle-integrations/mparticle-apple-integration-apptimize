@@ -55,7 +55,7 @@ static NSString *_pilotTargetingID = nil;
 
 #pragma mark - MPKitApptimize methods
 
-+ (void)setPilotTargetingID:(NSString*) pilotTargetingID {
++ (void)setPilotTargetingID:(nonnull NSString *)pilotTargetingID {
     void(^block)(void) = ^{
         _pilotTargetingID = pilotTargetingID;
         if ([[MParticle sharedInstance] isKitActive:[[self class] kitCode]]) {
@@ -72,7 +72,7 @@ static NSString *_pilotTargetingID = nil;
 #pragma mark - MPKitInstanceProtocol methods
 
 #pragma mark Kit instance and lifecycle
-- (MPKitExecStatus *)didFinishLaunchingWithConfiguration:(NSDictionary *)configuration {
+- (nonnull MPKitExecStatus *)didFinishLaunchingWithConfiguration:(nonnull NSDictionary *)configuration {
     MPKitExecStatus *execStatus = nil;
 
     NSString *appKey = configuration[APP_MP_KEY];
