@@ -38,17 +38,17 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
 #pragma mark Kit instance and lifecycle
 - (MPKitExecStatus *)didFinishLaunchingWithConfiguration:(NSDictionary *)configuration {
     MPKitExecStatus *execStatus = nil;
-
+    
     NSString *appKey = configuration[APP_MP_KEY];
     if (!appKey) {
         execStatus = [[MPKitExecStatus alloc] initWithSDKCode:[[self class] kitCode] returnCode:MPKitReturnCodeRequirementsNotMet];
         return execStatus;
     }
-
+    
     _configuration = configuration;
-
+    
     [self start];
-
+    
     execStatus = [[MPKitExecStatus alloc] initWithSDKCode:[[self class] kitCode] returnCode:MPKitReturnCodeSuccess];
     return execStatus;
 }
@@ -129,18 +129,18 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
     if (![notification.userInfo[ApptimizeTestFirstRunUserInfoKey] boolValue]) {
         return;
     }
-
+    
     NSMutableArray *profileAttributeStrings = [NSMutableArray new];
-
+    
     for (id<ApptimizeTestInfo> test in [[Apptimize testInfo] allValues]) {
         if (test.userHasParticipated) {
             // We only want experiments the user has actually participated in
             [profileAttributeStrings addObject:[NSString stringWithFormat:@"%@-%@",test.testName,test.enrolledVariantName]];
         }
     }
-
+    
     [[MParticle sharedInstance].identity.currentUser setUserAttributeList:@"Apptimize experiment" values:profileAttributeStrings];
-
+    
     // Apptimize doesn't notify with IDs, so we iterate over all experiments to find the matching one.
     NSString *name = notification.userInfo[ApptimizeTestNameUserInfoKey];
     NSString *variant = notification.userInfo[ApptimizeVariantNameUserInfoKey];
@@ -173,21 +173,21 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
     return [self makeStatus:MPKitReturnCodeSuccess];
 }
 
- - (nonnull MPKitExecStatus *)setUserIdentity:(NSString *)identityString identityType:(MPUserIdentity)identityType {
-     switch( identityType ) {
-         case MPUserIdentityCustomerId:
-         case MPUserIdentityAlias: {
-             [Apptimize setPilotTargetingID:identityString];
-             break;
-         }
-
-         default:
+- (nonnull MPKitExecStatus *)setUserIdentity:(NSString *)identityString identityType:(MPUserIdentity)identityType {
+    switch( identityType ) {
+        case MPUserIdentityCustomerId:
+        case MPUserIdentityAlias: {
+            [Apptimize setPilotTargetingID:identityString];
+            break;
+        }
+            
+        default:
             return [self makeStatus:MPKitReturnCodeUnavailable];
             break;
-     }
-
-     return [self makeStatus:MPKitReturnCodeSuccess];
- }
+    }
+    
+    return [self makeStatus:MPKitReturnCodeSuccess];
+}
 
 #pragma mark Events
 
