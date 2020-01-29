@@ -151,11 +151,11 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
         }
         MPEvent *event = [[MPEvent alloc]initWithName:@"Apptimize experiment"
                                                  type:MPEventTypeOther];
-        event.info = @{@"Name" : [experiment testName],
-                       @"Variation" : [experiment enrolledVariantName],
-                       @"Name and Variation" : [NSString stringWithFormat:@"%@-%@", [experiment testName], [experiment enrolledVariantName]],
-                       @"ID" : [experiment testID],
-                       @"VariationID" : [experiment enrolledVariantID]};
+        event.customAttributes = @{@"Name" : [experiment testName],
+                                   @"Variation" : [experiment enrolledVariantName],
+                                   @"Name and Variation" : [NSString stringWithFormat:@"%@-%@", [experiment testName], [experiment enrolledVariantName]],
+                                   @"ID" : [experiment testID],
+                                   @"VariationID" : [experiment enrolledVariantID]};
         [[MParticle sharedInstance] logEvent:event];
         *stop = YES;
     }];
@@ -191,8 +191,11 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
 
 #pragma mark Events
 
-- (nonnull MPKitExecStatus *)logEvent:(MPEvent *)event {
-    [Apptimize track:event.name];
+- (nonnull MPKitExecStatus *)logBaseEvent:(nonnull MPBaseEvent *)event {
+    if (![event isKindOfClass:[MPEvent class]]) {
+        MPEvent *mpEvent = (MPEvent*)event;
+        [Apptimize track:mpEvent.name];
+    }
     return [self makeStatus:MPKitReturnCodeSuccess];
 }
 
