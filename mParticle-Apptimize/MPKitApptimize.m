@@ -192,11 +192,13 @@ static NSString *const TRACK_EXPERIMENTS = @"trackExperiments";
 #pragma mark Events
 
 - (nonnull MPKitExecStatus *)logBaseEvent:(nonnull MPBaseEvent *)event {
-    if (![event isKindOfClass:[MPEvent class]]) {
+    if ([event isKindOfClass:[MPEvent class]]) {
         MPEvent *mpEvent = (MPEvent*)event;
         [Apptimize track:mpEvent.name];
+        return [self makeStatus:MPKitReturnCodeSuccess];
     }
-    return [self makeStatus:MPKitReturnCodeSuccess];
+
+    return [self makeStatus:MPKitReturnCodeUnavailable];
 }
 
 - (nonnull MPKitExecStatus *)logScreen:(MPEvent *)event {
