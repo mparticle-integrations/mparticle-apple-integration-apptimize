@@ -14,5 +14,4 @@ FOUNDATION_EXPORT double mParticle_ApptimizeVersionNumber;
 FOUNDATION_EXPORT const unsigned char mParticle_ApptimizeVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <mParticle_Apptimize/PublicHeader.h>
-
-
+#import <mParticle_Apptimize/MPKitApptimize.h>
