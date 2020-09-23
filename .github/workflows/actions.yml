@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v1
       - name: Dependencies
         run: |
-          sudo gem install cocoapods
+          sudo gem install cocoapods:1.10.0.rc.1
           pod repo update
         env:
           DEVELOPER_DIR: ${{ matrix.xcode }}
