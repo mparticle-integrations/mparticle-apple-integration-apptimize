@@ -18,8 +18,4 @@ Pod::Spec.new do |s|
     s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 8.0'
     s.ios.dependency 'Apptimize', '~> 3.2'
 
-    s.pod_target_xcconfig = {  'ARCHS' => '$(ARCHS_STANDARD_64_BIT)', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-    s.user_target_xcconfig = {  'ARCHS' => '$(ARCHS_STANDARD_64_BIT)', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-
-
 end
