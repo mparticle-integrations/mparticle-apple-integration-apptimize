@@ -6,7 +6,7 @@ target 'mParticle-Apptimize' do
   use_frameworks!
 
   # Pods for mParticle-Apptimize
-  pod 'mParticle-Apple-SDK/mParticle', '~> 8.0-beta'
-  pod 'Apptimize', '~> 3.0'
+  pod 'mParticle-Apple-SDK/mParticle', '~> 8.0'
+  pod 'Apptimize', '~> 3.5.25'
 
 end

@@ -13,9 +13,9 @@ Pod::Spec.new do |s|
     s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-apptimize.git", :tag => s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticle"
 
-    s.ios.deployment_target = "9.0"
+    s.ios.deployment_target = "11.0"
     s.ios.source_files      = 'mParticle-Apptimize/*.{h,m,mm}'
     s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 8.0'
-    s.ios.dependency 'Apptimize', '~> 3.2'
+    s.ios.dependency 'Apptimize', '~> 3.5.25'
 
 end
