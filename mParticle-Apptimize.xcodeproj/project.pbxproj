@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27B46C39177A6EE98630695A /* Pods_mParticle_Apptimize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC81CBB3A99FAD1126C5BA51 /* Pods_mParticle_Apptimize.framework */; };
+		53E9ACCD2BBF0F7E0062A03A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 53E9ACCC2BBF0F7E0062A03A /* PrivacyInfo.xcprivacy */; };
 		D37EFA9924F43B970091B75B /* mParticle_Apptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = D37EFA9724F43B970091B75B /* mParticle_Apptimize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D37EFAA124F43C780091B75B /* MPKitApptimize.m in Sources */ = {isa = PBXBuildFile; fileRef = D37EFA9F24F43C780091B75B /* MPKitApptimize.m */; };
 		D37EFAA224F43C780091B75B /* MPKitApptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = D37EFAA024F43C780091B75B /* MPKitApptimize.h */; };
@@ -15,6 +16,7 @@
 
 /* Begin PBXFileReference section */
 		27D8AA1C689E5CD6D5103589 /* Pods-mParticle-Apptimize.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mParticle-Apptimize.release.xcconfig"; path = "Target Support Files/Pods-mParticle-Apptimize/Pods-mParticle-Apptimize.release.xcconfig"; sourceTree = "<group>"; };
+		53E9ACCC2BBF0F7E0062A03A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA05C6D0B18A689C357B7448 /* Pods-mParticle-Apptimize.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mParticle-Apptimize.debug.xcconfig"; path = "Target Support Files/Pods-mParticle-Apptimize/Pods-mParticle-Apptimize.debug.xcconfig"; sourceTree = "<group>"; };
 		D37EFA9424F43B970091B75B /* mParticle_Apptimize.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mParticle_Apptimize.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37EFA9724F43B970091B75B /* mParticle_Apptimize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mParticle_Apptimize.h; sourceTree = "<group>"; };
@@ -43,7 +45,6 @@
 				AA05C6D0B18A689C357B7448 /* Pods-mParticle-Apptimize.debug.xcconfig */,
 				27D8AA1C689E5CD6D5103589 /* Pods-mParticle-Apptimize.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -71,6 +72,7 @@
 				D37EFAA024F43C780091B75B /* MPKitApptimize.h */,
 				D37EFA9F24F43C780091B75B /* MPKitApptimize.m */,
 				D37EFA9724F43B970091B75B /* mParticle_Apptimize.h */,
+				53E9ACCC2BBF0F7E0062A03A /* PrivacyInfo.xcprivacy */,
 				D37EFA9824F43B970091B75B /* Info.plist */,
 			);
 			path = "mParticle-Apptimize";
@@ -155,6 +157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53E9ACCD2BBF0F7E0062A03A /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,11 +252,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -305,10 +309,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -339,7 +344,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -367,7 +371,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
