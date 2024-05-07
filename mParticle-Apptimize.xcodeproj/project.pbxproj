@@ -3,28 +3,27 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27B46C39177A6EE98630695A /* Pods_mParticle_Apptimize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC81CBB3A99FAD1126C5BA51 /* Pods_mParticle_Apptimize.framework */; };
+		53034BE42BEAD62000AA62CE /* Apptimize.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53034BE22BEAD62000AA62CE /* Apptimize.xcframework */; };
+		53034BE52BEAD62000AA62CE /* mParticle_Apple_SDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53034BE32BEAD62000AA62CE /* mParticle_Apple_SDK.xcframework */; };
 		53E9ACCD2BBF0F7E0062A03A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 53E9ACCC2BBF0F7E0062A03A /* PrivacyInfo.xcprivacy */; };
 		D37EFA9924F43B970091B75B /* mParticle_Apptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = D37EFA9724F43B970091B75B /* mParticle_Apptimize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D37EFAA124F43C780091B75B /* MPKitApptimize.m in Sources */ = {isa = PBXBuildFile; fileRef = D37EFA9F24F43C780091B75B /* MPKitApptimize.m */; };
-		D37EFAA224F43C780091B75B /* MPKitApptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = D37EFAA024F43C780091B75B /* MPKitApptimize.h */; };
+		D37EFAA224F43C780091B75B /* MPKitApptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = D37EFAA024F43C780091B75B /* MPKitApptimize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		27D8AA1C689E5CD6D5103589 /* Pods-mParticle-Apptimize.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mParticle-Apptimize.release.xcconfig"; path = "Target Support Files/Pods-mParticle-Apptimize/Pods-mParticle-Apptimize.release.xcconfig"; sourceTree = "<group>"; };
+		53034BE22BEAD62000AA62CE /* Apptimize.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:PGJV57GD94:Urban Airship Inc."; lastKnownFileType = wrapper.xcframework; name = Apptimize.xcframework; path = Carthage/Build/Apptimize.xcframework; sourceTree = "<group>"; };
+		53034BE32BEAD62000AA62CE /* mParticle_Apple_SDK.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:DLD43Y3TRP:mParticle, inc"; lastKnownFileType = wrapper.xcframework; name = mParticle_Apple_SDK.xcframework; path = Carthage/Build/mParticle_Apple_SDK.xcframework; sourceTree = "<group>"; };
 		53E9ACCC2BBF0F7E0062A03A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		AA05C6D0B18A689C357B7448 /* Pods-mParticle-Apptimize.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mParticle-Apptimize.debug.xcconfig"; path = "Target Support Files/Pods-mParticle-Apptimize/Pods-mParticle-Apptimize.debug.xcconfig"; sourceTree = "<group>"; };
 		D37EFA9424F43B970091B75B /* mParticle_Apptimize.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mParticle_Apptimize.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37EFA9724F43B970091B75B /* mParticle_Apptimize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mParticle_Apptimize.h; sourceTree = "<group>"; };
 		D37EFA9824F43B970091B75B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37EFA9F24F43C780091B75B /* MPKitApptimize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPKitApptimize.m; sourceTree = "<group>"; };
 		D37EFAA024F43C780091B75B /* MPKitApptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPKitApptimize.h; sourceTree = "<group>"; };
-		D37EFAA424F442E00091B75B /* mParticle_Apple_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mParticle_Apple_SDK.framework; path = Carthage/Build/iOS/mParticle_Apple_SDK.framework; sourceTree = "<group>"; };
-		FC81CBB3A99FAD1126C5BA51 /* Pods_mParticle_Apptimize.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mParticle_Apptimize.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,29 +31,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27B46C39177A6EE98630695A /* Pods_mParticle_Apptimize.framework in Frameworks */,
+				53034BE42BEAD62000AA62CE /* Apptimize.xcframework in Frameworks */,
+				53034BE52BEAD62000AA62CE /* mParticle_Apple_SDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		556ED8B199C57862917404B1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AA05C6D0B18A689C357B7448 /* Pods-mParticle-Apptimize.debug.xcconfig */,
-				27D8AA1C689E5CD6D5103589 /* Pods-mParticle-Apptimize.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		D37EFA8A24F43B970091B75B = {
 			isa = PBXGroup;
 			children = (
 				D37EFA9624F43B970091B75B /* mParticle-Apptimize */,
 				D37EFA9524F43B970091B75B /* Products */,
 				D37EFAA324F442E00091B75B /* Frameworks */,
-				556ED8B199C57862917404B1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,8 +71,8 @@
 		D37EFAA324F442E00091B75B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D37EFAA424F442E00091B75B /* mParticle_Apple_SDK.framework */,
-				FC81CBB3A99FAD1126C5BA51 /* Pods_mParticle_Apptimize.framework */,
+				53034BE22BEAD62000AA62CE /* Apptimize.xcframework */,
+				53034BE32BEAD62000AA62CE /* mParticle_Apple_SDK.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -106,7 +96,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D37EFA9C24F43B970091B75B /* Build configuration list for PBXNativeTarget "mParticle-Apptimize" */;
 			buildPhases = (
-				D29EE7C56E0B79CECE2AFB9A /* [CP] Check Pods Manifest.lock */,
 				D37EFA8F24F43B970091B75B /* Headers */,
 				D37EFA9024F43B970091B75B /* Sources */,
 				D37EFA9124F43B970091B75B /* Frameworks */,
@@ -162,31 +151,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		D29EE7C56E0B79CECE2AFB9A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-mParticle-Apptimize-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D37EFA9024F43B970091B75B /* Sources */ = {
@@ -322,7 +286,6 @@
 		};
 		D37EFA9D24F43B970091B75B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA05C6D0B18A689C357B7448 /* Pods-mParticle-Apptimize.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -349,7 +312,6 @@
 		};
 		D37EFA9E24F43B970091B75B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27D8AA1C689E5CD6D5103589 /* Pods-mParticle-Apptimize.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

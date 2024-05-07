@@ -1,5 +1,9 @@
 #import "MPKitApptimize.h"
-#import <Apptimize/Apptimize.h>
+#if defined(__has_include) && __has_include(<Apptimize/Apptimize.h>)
+    #import <Apptimize/Apptimize.h>
+#else
+    #import "Apptimize.h"
+#endif
 
 @interface MPKitApptimize()
 @property (nonatomic, unsafe_unretained) BOOL started;
