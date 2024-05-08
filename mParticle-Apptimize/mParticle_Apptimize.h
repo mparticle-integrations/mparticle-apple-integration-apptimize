@@ -13,5 +13,8 @@ FOUNDATION_EXPORT double mParticle_ApptimizeVersionNumber;
 //! Project version string for mParticle_Apptimize.
 FOUNDATION_EXPORT const unsigned char mParticle_ApptimizeVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <mParticle_Apptimize/PublicHeader.h>
-#import <mParticle_Apptimize/MPKitApptimize.h>
+#if defined(__has_include) && __has_include(<mParticle_Apptimize/MPKitApptimize.h>)
+    #import <mParticle_Apptimize/MPKitApptimize.h>
+#else
+    #import "MPKitApptimize.h"
+#endif
