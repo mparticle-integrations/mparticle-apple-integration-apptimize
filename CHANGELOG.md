@@ -1,3 +1,10 @@
+# [8.2.0](https://github.com/mparticle-integrations/mparticle-apple-integration-apptimize/compare/v8.1.0...v8.2.0) (2024-05-08)
+
+
+### Features
+
+* Improve Privacy Manifest support for iOS 17 ([#13](https://github.com/mparticle-integrations/mparticle-apple-integration-apptimize/issues/13)) ([3ba18d3](https://github.com/mparticle-integrations/mparticle-apple-integration-apptimize/commit/3ba18d3890c4a1a8d0cfc9800fd2da1031666078))
+
 # [8.1.0](https://github.com/mparticle-integrations/mparticle-apple-integration-apptimize/compare/v8.0.2...v8.1.0) (2024-04-10)
 
 
